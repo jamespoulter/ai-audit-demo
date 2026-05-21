@@ -11,138 +11,59 @@ type Slide = {
   render: () => ReactNode
 }
 
-
 const slides: Slide[] = [
   {
     id: 'cover',
     kind: 'cover',
     render: () => (
       <div className="deck-cover">
-        <div className="deck-eyebrow">ThreePoint × Fourth Wall</div>
-        <h1 className="deck-h1">Workshop 2</h1>
-        <p className="deck-lede">Designing the workflows</p>
+        <div className="deck-eyebrow">ThreePoint</div>
+        <h1 className="deck-h1">The 4AI Brain</h1>
+        <p className="deck-lede">An AI readiness audit for your organisation</p>
         <div className="deck-meta-row">
-          <span>Monday — week of 11 May 2026</span>
+          <span>Facilitated by James Poulter</span>
           <span>·</span>
-          <span>201 Borough High Street</span>
+          <span>ThreePoint</span>
         </div>
         <div className="deck-hint">Press → to begin</div>
       </div>
     ),
   },
   {
-    id: 'where-we-are',
+    id: 'how-audit-works',
     kind: 'standard',
     render: () => (
       <div className="deck-stack-tight">
-        <div className="deck-eyebrow">Where we are</div>
-        <h2 className="deck-h2">Three weeks in.</h2>
+        <div className="deck-eyebrow">What we're doing today</div>
+        <h2 className="deck-h2">We're going to map your AI brain.</h2>
+        <p className="deck-body">Every organisation that uses AI has four distinct systems at work — whether they know it or not. Memory, Thinking, Deciding, and Creating. Today we audit all four: where they're strong, where they're absent, and where the gaps are costing you time.</p>
         <div className="deck-journey">
-          <div className="deck-journey-step deck-journey-step-done">
-            <span className="deck-journey-num">01</span>
-            <span className="deck-journey-label">Discover</span>
-          </div>
-          <div className="deck-journey-arrow">→</div>
-          <div className="deck-journey-step deck-journey-step-done">
-            <span className="deck-journey-num">02</span>
-            <span className="deck-journey-label">Map the lifecycle</span>
-          </div>
-          <div className="deck-journey-arrow">→</div>
           <div className="deck-journey-step deck-journey-step-now">
+            <span className="deck-journey-num">01</span>
+            <span className="deck-journey-label">Memory</span>
+          </div>
+          <div className="deck-journey-arrow">→</div>
+          <div className="deck-journey-step">
+            <span className="deck-journey-num">02</span>
+            <span className="deck-journey-label">Thinking</span>
+          </div>
+          <div className="deck-journey-arrow">→</div>
+          <div className="deck-journey-step">
             <span className="deck-journey-num">03</span>
-            <span className="deck-journey-label">Design the workflows</span>
+            <span className="deck-journey-label">Deciding</span>
           </div>
           <div className="deck-journey-arrow">→</div>
           <div className="deck-journey-step">
             <span className="deck-journey-num">04</span>
-            <span className="deck-journey-label">Roadmap</span>
+            <span className="deck-journey-label">Creating</span>
+          </div>
+          <div className="deck-journey-arrow">→</div>
+          <div className="deck-journey-step">
+            <span className="deck-journey-num">05</span>
+            <span className="deck-journey-label">Synthesis</span>
           </div>
         </div>
-      </div>
-    ),
-  },
-  {
-    id: 'warm-up',
-    kind: 'cover',
-    render: () => (
-      <div className="deck-cover">
-        <div className="deck-eyebrow deck-eyebrow-orange">Warm-up</div>
-        <h1 className="deck-h1">Smallest smile.</h1>
-      </div>
-    ),
-  },
-  {
-    id: 'recap',
-    kind: 'standard',
-    render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow">Quick recap</div>
-        <h2 className="deck-h2">Five phases. Fourteen stages.</h2>
-        <div className="phase-recap">
-          <div className="phase-recap-row">
-            <div className="phase-recap-label"><span className="phase-recap-num">01</span><span className="phase-recap-name">Lead intake</span></div>
-            <div className="phase-recap-stages">01 Request · 02 Info gathering</div>
-          </div>
-          <div className="phase-recap-row">
-            <div className="phase-recap-label"><span className="phase-recap-num">02</span><span className="phase-recap-name">Strategic positioning</span></div>
-            <div className="phase-recap-stages">03 Brief review (internal) · 04 New / Existing / Competing</div>
-          </div>
-          <div className="phase-recap-row">
-            <div className="phase-recap-label"><span className="phase-recap-num">03</span><span className="phase-recap-name">Creative cycle</span></div>
-            <div className="phase-recap-stages">05 Client ideation · 06 Concept ideation · 07 Concept development · 08 Concept creating · 09 Concept creative dev</div>
-          </div>
-          <div className="phase-recap-row phase-recap-row-focus">
-            <div className="phase-recap-label"><span className="phase-recap-num">04</span><span className="phase-recap-name">Operationalisation</span></div>
-            <div className="phase-recap-stages">10 Logistics &amp; Planning · 11 Training &amp; release</div>
-          </div>
-          <div className="phase-recap-row">
-            <div className="phase-recap-label"><span className="phase-recap-num">05</span><span className="phase-recap-name">Delivery &amp; close</span></div>
-            <div className="phase-recap-stages">12 Event days · 13 Debrief · 14 Merchandise / Marketing</div>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'prework-headlines',
-    kind: 'standard',
-    render: () => (
-      <div className="deck-stack">
-        <div className="deck-eyebrow">What you said in pre-work</div>
-        <h2 className="deck-h2">Two things to land today.</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginTop: 10 }}>
-          <div className="deck-tile" style={{ borderLeft: '3px solid #f46c42', paddingLeft: 22 }}>
-            <div className="deck-tile-num">01</div>
-            <div className="deck-tile-title">Logistics &amp; Planning is the priority</div>
-            <div className="deck-tile-meta" style={{ marginTop: 8 }}>
-              Five of six of you voted to deep-dive Stage 10. Founder, BD, Production, both Client Leads — convergent. That&rsquo;s where the leverage is and that&rsquo;s where we go first.
-            </div>
-            <div style={{ marginTop: 14, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(244, 108, 66, 0.85)' }}>
-              5 / 6 votes
-            </div>
-          </div>
-          <div className="deck-tile" style={{ borderLeft: '3px solid #c59f4d', paddingLeft: 22 }}>
-            <div className="deck-tile-num">02</div>
-            <div className="deck-tile-title">The tool stack needs decisions, not options</div>
-            <div className="deck-tile-meta" style={{ marginTop: 8 }}>
-              Chat, email, decks, costing — already consensus. The real fragmentation sits in two places: where actions get tracked, and which AI does what. Both need a single answer the room can stand behind.
-            </div>
-            <div style={{ marginTop: 14, fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(197, 159, 77, 0.9)' }}>
-              Open it up · close it down
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'framework-section',
-    kind: 'section',
-    render: () => (
-      <div className="deck-section">
-        <div className="deck-section-num">01</div>
-        <h2 className="deck-section-title">How AI actually works</h2>
-        <div className="deck-section-meta">Two ideas. Twenty minutes. Then we use them.</div>
+        <p className="deck-footnote">Honest answers matter more than impressive ones.</p>
       </div>
     ),
   },
@@ -152,8 +73,8 @@ const slides: Slide[] = [
     render: () => (
       <div className="deck-stack">
         <div className="deck-eyebrow">Quick framework — RAG</div>
-        <h2 className="deck-h2">The model doesn’t know your stuff.</h2>
-        <p className="deck-body">Retrieval-Augmented Generation. The LLM is generic — trained on the public internet up to a cut-off. To make it useful for FW work, you fetch the right context from somewhere you trust and pass it in alongside the question.</p>
+        <h2 className="deck-h2">The model doesn't know your stuff.</h2>
+        <p className="deck-body">Retrieval-Augmented Generation. The LLM is generic — trained on the public internet up to a cut-off. To make it useful for your work, you fetch the right context from somewhere you trust and pass it in alongside the question.</p>
         <div className="deck-three-up">
           <div className="deck-tile">
             <div className="deck-tile-num">01</div>
@@ -171,26 +92,12 @@ const slides: Slide[] = [
             <div className="deck-tile-meta">Let the model answer using your context.</div>
           </div>
         </div>
-        <p className="deck-footnote">If the right context can’t be retrieved, the answer can’t be right. That’s why where you store things matters.</p>
+        <p className="deck-footnote">If the right context can't be retrieved, the answer can't be right. That's why where you store things matters.</p>
       </div>
     ),
   },
   {
-    id: 'ai-brain-intro',
-    kind: 'standard',
-    render: () => (
-      <div className="deck-stack-tight" style={{ alignItems: 'center', textAlign: 'center' }}>
-        <div className="deck-eyebrow">The agentic loop</div>
-        <h2 className="deck-h2">An AI worker has a brain.</h2>
-        <div style={{ width: '100%', maxWidth: 460, margin: '0 auto' }}>
-          <BrainAnatomy showLabels={false} showSynapses />
-        </div>
-        <p className="deck-footnote">Four parts. Get one wrong and the loop breaks.</p>
-      </div>
-    ),
-  },
-  {
-    id: 'ai-brain',
+    id: 'ai-brain-overview',
     kind: 'standard',
     render: () => (
       <div className="deck-stack-tight">
@@ -207,11 +114,6 @@ const slides: Slide[] = [
                 <div className="brain-legend-tag">Memory</div>
                 <div className="brain-legend-title">Where we store</div>
                 <div className="brain-legend-region-name">Hippocampus &amp; temporal lobe</div>
-                <div className="brain-legend-tools">
-                  <ToolChip id="drive" size="sm" />
-                  <ToolChip id="notion" size="sm" />
-                  <ToolChip id="sheets" size="sm" />
-                </div>
               </div>
             </div>
             <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#f46c42' } as React.CSSProperties}>
@@ -220,11 +122,6 @@ const slides: Slide[] = [
                 <div className="brain-legend-tag">Thinking</div>
                 <div className="brain-legend-title">Where it reasons</div>
                 <div className="brain-legend-region-name">Frontal cortex</div>
-                <div className="brain-legend-tools">
-                  <ToolChip id="chatgpt" size="sm" />
-                  <ToolChip id="claude" size="sm" />
-                  <ToolChip id="gemini" size="sm" />
-                </div>
               </div>
             </div>
             <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#c59f4d' } as React.CSSProperties}>
@@ -233,11 +130,6 @@ const slides: Slide[] = [
                 <div className="brain-legend-tag">Deciding</div>
                 <div className="brain-legend-title">Where actions live</div>
                 <div className="brain-legend-region-name">Prefrontal &amp; cingulate</div>
-                <div className="brain-legend-tools">
-                  <ToolChip id="monday" size="sm" />
-                  <ToolChip id="productive" size="sm" />
-                  <ToolChip id="sheets" size="sm" />
-                </div>
               </div>
             </div>
             <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#d1f503' } as React.CSSProperties}>
@@ -246,11 +138,6 @@ const slides: Slide[] = [
                 <div className="brain-legend-tag">Creating</div>
                 <div className="brain-legend-title">Where it enacts</div>
                 <div className="brain-legend-region-name">Motor cortex &amp; cerebellum</div>
-                <div className="brain-legend-tools">
-                  <span className="brain-tool-chip">Skills</span>
-                  <span className="brain-tool-chip">Agents</span>
-                  <span className="brain-tool-chip">Tools</span>
-                </div>
               </div>
             </div>
           </div>
@@ -259,349 +146,239 @@ const slides: Slide[] = [
     ),
   },
   {
-    id: 'ai-brain-mapping',
-    kind: 'standard',
+    id: 'memory-section',
+    kind: 'section',
     render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow">Why it matters today</div>
-        <h2 className="deck-h2">Today’s decisions are brain decisions.</h2>
-        <div className="brain-stage">
-          <div className="brain-svg-wrap">
-            <BrainAnatomy showLabels={false} showSynapses pulseHighlight />
-          </div>
-          <div>
-            <p className="deck-body" style={{ marginBottom: 14 }}>
-              Every choice on the agenda lights up a different part of the brain. Get them all set and the loop runs without us. Leave any one ambiguous and it stalls.
-            </p>
-            <div className="brain-mapping">
-              <div className="brain-mapping-row">
-                <span>Action-tracking decision</span>
-                <span className="brain-mapping-arrow">→</span>
-                <span className="brain-mapping-target brain-mapping-target-deciding">Deciding</span>
-              </div>
-              <div className="brain-mapping-row">
-                <span>AI assistance by task</span>
-                <span className="brain-mapping-arrow">→</span>
-                <span className="brain-mapping-target brain-mapping-target-thinking">Thinking</span>
-              </div>
-              <div className="brain-mapping-row">
-                <span>Where context lives</span>
-                <span className="brain-mapping-arrow">→</span>
-                <span className="brain-mapping-target brain-mapping-target-memory">Memory</span>
-              </div>
-              <div className="brain-mapping-row">
-                <span>Workflows we design</span>
-                <span className="brain-mapping-arrow">→</span>
-                <span className="brain-mapping-target brain-mapping-target-creating">Creating</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="deck-section">
+        <div className="deck-section-num">01</div>
+        <h2 className="deck-section-title">Memory</h2>
+        <div className="deck-section-meta">Where your organisation stores what it knows.</div>
       </div>
     ),
   },
   {
-    id: 'ai-brain-question',
+    id: 'memory-what-it-is',
     kind: 'standard',
     render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow">The question for today</div>
-        <h2 className="deck-h2">Pick one core tool per part of the brain.</h2>
-        <p className="deck-body" style={{ marginBottom: 14 }}>
-          We&rsquo;re going to map the first three together — Memory, Thinking, Deciding. The fourth — Creating — is the compositional layer we get to last: the skills, agents and tools we orchestrate on top.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <ToolCandidateRow
-            region="thinking"
-            label="Thinking — your default LLM"
-            ids={['chatgpt', 'claude', 'gemini']}
-          />
-          <ToolCandidateRow
-            region="deciding"
-            label="Deciding — where actions live"
-            ids={['monday', 'productive', 'sheets']}
-          />
-          <ToolCandidateRow
-            region="memory"
-            label="Memory — where context lives, by stage"
-            ids={['drive', 'notion', 'sheets', 'docs']}
-          />
-          <ToolCandidateRow
-            region="creating"
-            label="Creating — skills, agents, tools (Block 4)"
-            ids={['powerpoint', 'docs', 'sheets', 'read', 'granola', 'base44']}
-          />
+      <div className="deck-stack">
+        <div className="deck-eyebrow">Memory — Hippocampus &amp; temporal lobe</div>
+        <h2 className="deck-h2">Where does your context live?</h2>
+        <p className="deck-body">Your AI is only as good as the context you can give it. Memory is the layer where knowledge, history, and working context sit — briefs, past projects, client notes, brand voice. If your team can't find it, the AI can't find it either.</p>
+        <div className="deck-three-up">
+          <div className="deck-tile">
+            <div className="deck-tile-num">01</div>
+            <div className="deck-tile-title">Storage</div>
+            <div className="deck-tile-meta">Where files, briefs, notes and history actually live — Drive, Notion, SharePoint, email.</div>
+          </div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">02</div>
+            <div className="deck-tile-title">Retrieval</div>
+            <div className="deck-tile-meta">Can you — or an AI — find the right thing at the right moment, or is it buried?</div>
+          </div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">03</div>
+            <div className="deck-tile-title">Quality</div>
+            <div className="deck-tile-meta">Is what's stored accurate, up to date, and structured enough to be useful?</div>
+          </div>
         </div>
-        <p className="deck-footnote">One default per part. Outliers allowed — but named, with a reason.</p>
+        <p className="deck-footnote">Most organisations have a memory problem masquerading as an AI problem.</p>
       </div>
     ),
   },
   {
-    id: 'lp-section',
+    id: 'memory-questions',
+    kind: 'exercise',
+    render: () => (
+      <div className="deck-stack">
+        <div className="deck-eyebrow deck-eyebrow-orange">Memory audit — questions for the room</div>
+        <h2 className="deck-h2">Where does your organisation's knowledge live?</h2>
+        <ul className="deck-rules">
+          <li>If a new person joined tomorrow, where would they find what they need to do their job?</li>
+          <li>When you're about to create something — a proposal, a report, a brief — where do you go first?</li>
+          <li>What's stored in people's heads that should be written down somewhere?</li>
+          <li>Have you ever lost important context because someone left, a laptop died, or a thread got buried?</li>
+          <li>If you wanted to give an AI your organisation's institutional memory — where would you point it?</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    id: 'memory-exercise',
+    kind: 'exercise',
+    render: () => (
+      <div className="deck-stack-tight">
+        <div className="deck-eyebrow deck-eyebrow-orange">Memory — mapping exercise · 10 min</div>
+        <h2 className="deck-h2">Three columns. Be honest.</h2>
+        <div className="task-mapping-grid">
+          <div className="task-mapping-col task-mapping-col-memory">
+            <div className="task-mapping-num">01</div>
+            <div className="task-mapping-head">What we store</div>
+            <div className="task-mapping-q">List the types of information your team creates and relies on. Briefs, client notes, past projects, research, decisions.</div>
+          </div>
+          <div className="task-mapping-col task-mapping-col-memory">
+            <div className="task-mapping-num">02</div>
+            <div className="task-mapping-head">Where it lives</div>
+            <div className="task-mapping-q">For each type — where does it actually live today? Drive? Email? Notion? Someone's desktop?</div>
+          </div>
+          <div className="task-mapping-col task-mapping-col-memory">
+            <div className="task-mapping-num">03</div>
+            <div className="task-mapping-head">How findable?</div>
+            <div className="task-mapping-q">Would a new colleague find it without asking someone? Would an AI be able to use it? Rate 1–5.</div>
+          </div>
+        </div>
+        <p className="deck-footnote">Group review: spot where context is trapped, siloed, or missing entirely.</p>
+      </div>
+    ),
+  },
+  {
+    id: 'thinking-section',
     kind: 'section',
     render: () => (
       <div className="deck-section">
         <div className="deck-section-num">02</div>
-        <h2 className="deck-section-title">Logistics &amp; Planning</h2>
-        <div className="deck-section-meta">Stage 10. Where 5 of 6 of you said to go deep.</div>
+        <h2 className="deck-section-title">Thinking</h2>
+        <div className="deck-section-meta">Which AI does the reasoning — and what does it need to know?</div>
       </div>
     ),
   },
   {
-    id: 'lp-current',
+    id: 'thinking-what-it-is',
     kind: 'standard',
     render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow">Where we are today</div>
-        <h2 className="deck-h2">Stage 10, broken down — and the tools you reach for.</h2>
-        <p className="deck-body" style={{ marginBottom: 12 }}>From Workshop 1 stickies and the discovery interviews. This is the live picture, not a future state.</p>
-        <div className="lp-current-grid">
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Costing &amp; quoting</div>
-            <div className="lp-current-tools">
-              <ToolChip id="sheets" size="sm" />
-            </div>
-            <div className="lp-current-note">Manual, error-prone, formula risk.</div>
+      <div className="deck-stack">
+        <div className="deck-eyebrow">Thinking — The frontal cortex</div>
+        <h2 className="deck-h2">Which AI are you using — and for what?</h2>
+        <p className="deck-body">The Thinking layer is where the LLM does its work. But most teams are using AI reactively — when they remember to, for whatever they happen to need at the moment. To get consistent value, you need to know which model your team reaches for, what it's being asked to do, and whether it's being given the right context to be useful.</p>
+        <div className="deck-three-up">
+          <div className="deck-tile">
+            <div className="deck-tile-num">01</div>
+            <div className="deck-tile-title">Which model</div>
+            <div className="deck-tile-meta">ChatGPT, Claude, Gemini, or something else? Is there a default — or is it fragmented?</div>
           </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Production schedule</div>
-            <div className="lp-current-tools">
-              <ToolChip id="monday" size="sm" />
-              <ToolChip id="sheets" size="sm" />
-            </div>
-            <div className="lp-current-note">Mixed — depends on the account.</div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">02</div>
+            <div className="deck-tile-title">For what tasks</div>
+            <div className="deck-tile-meta">Drafting, summarising, researching, coding, analysing? Where is AI adding value today?</div>
           </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Run of show</div>
-            <div className="lp-current-tools">
-              <ToolChip id="powerpoint" size="sm" />
-              <ToolChip id="docs" size="sm" />
-            </div>
-            <div className="lp-current-note">Built fresh each time.</div>
-          </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Supplier briefs &amp; comms</div>
-            <div className="lp-current-tools">
-              <ToolChip id="gmail" size="sm" />
-              <ToolChip id="docs" size="sm" />
-            </div>
-            <div className="lp-current-note">Lives in inboxes.</div>
-          </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">H&amp;S / method statements</div>
-            <div className="lp-current-tools">
-              <ToolChip id="docs" size="sm" />
-            </div>
-            <div className="lp-current-note">Fully manual today.</div>
-          </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Equipment &amp; resourcing</div>
-            <div className="lp-current-tools">
-              <ToolChip id="sheets" size="sm" />
-              <ToolChip id="monday" size="sm" />
-            </div>
-            <div className="lp-current-note">No single source of truth.</div>
-          </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Budget tracking</div>
-            <div className="lp-current-tools">
-              <ToolChip id="sheets" size="sm" />
-            </div>
-            <div className="lp-current-note">Recosted late, often.</div>
-          </div>
-          <div className="lp-current-cell">
-            <div className="lp-current-task">Internal updates &amp; chat</div>
-            <div className="lp-current-tools">
-              <ToolChip id="gchat" size="sm" />
-            </div>
-            <div className="lp-current-note">Actions get lost in threads.</div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">03</div>
+            <div className="deck-tile-title">With what context</div>
+            <div className="deck-tile-meta">Is your AI getting the right background before it answers — or is it working blind?</div>
           </div>
         </div>
-        <p className="deck-footnote">Eight tasks. Six tools. No single home.</p>
+        <p className="deck-footnote">A model without context is a clever guesser. Context is the difference.</p>
       </div>
     ),
   },
   {
-    id: 'b2-canvas',
-    kind: 'standard',
-    render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow">The canvas</div>
-        <h2 className="deck-h2">Every workflow is four brain decisions.</h2>
-        <div className="brain-canvas">
-          <div className="brain-canvas-flow">
-            <div className="brain-canvas-flow-cell">
-              <span>Trigger</span>
-              <small>What kicks the stage off?</small>
-            </div>
-            <div className="brain-canvas-flow-arrow">→</div>
-            <div className="brain-canvas-flow-cell">
-              <span>Steps</span>
-              <small>3–5, no more.</small>
-            </div>
-            <div className="brain-canvas-flow-arrow">→</div>
-            <div className="brain-canvas-flow-cell">
-              <span>Output</span>
-              <small>What does the next stage get?</small>
-            </div>
-          </div>
-          <div className="brain-canvas-cell brain-canvas-cell-memory">
-            <div className="brain-canvas-cell-head">
-              <span className="brain-canvas-cell-region">Memory</span>
-              <span className="brain-canvas-cell-tag">Where context lives</span>
-            </div>
-            <p className="brain-canvas-cell-q">Where does this stage&rsquo;s information sit so the next person — or the AI — can find it?</p>
-            <div className="brain-canvas-cell-tools">
-              <ToolChip id="drive" size="sm" />
-              <ToolChip id="notion" size="sm" />
-              <ToolChip id="sheets" size="sm" />
-            </div>
-          </div>
-          <div className="brain-canvas-cell brain-canvas-cell-thinking">
-            <div className="brain-canvas-cell-head">
-              <span className="brain-canvas-cell-region">Thinking</span>
-              <span className="brain-canvas-cell-tag">Which AI</span>
-            </div>
-            <p className="brain-canvas-cell-q">Which LLM does the reasoning here, and what does it need to know to be useful?</p>
-            <div className="brain-canvas-cell-tools">
-              <ToolChip id="chatgpt" size="sm" />
-              <ToolChip id="claude" size="sm" />
-              <ToolChip id="gemini" size="sm" />
-            </div>
-          </div>
-          <div className="brain-canvas-cell brain-canvas-cell-deciding">
-            <div className="brain-canvas-cell-head">
-              <span className="brain-canvas-cell-region">Deciding</span>
-              <span className="brain-canvas-cell-tag">Where the action sits</span>
-            </div>
-            <p className="brain-canvas-cell-q">When this stage is done, where does the next action get logged so it isn&rsquo;t lost?</p>
-            <div className="brain-canvas-cell-tools">
-              <ToolChip id="monday" size="sm" />
-              <ToolChip id="productive" size="sm" />
-              <ToolChip id="sheets" size="sm" />
-            </div>
-          </div>
-          <div className="brain-canvas-cell brain-canvas-cell-creating">
-            <div className="brain-canvas-cell-head">
-              <span className="brain-canvas-cell-region">Creating</span>
-              <span className="brain-canvas-cell-tag">Owner + skill</span>
-            </div>
-            <p className="brain-canvas-cell-q">Who owns it? What skill, agent or tool produces the output?</p>
-            <div className="brain-canvas-cell-tools">
-              <ToolChip id="docs" size="sm" />
-              <ToolChip id="powerpoint" size="sm" />
-              <ToolChip id="read" size="sm" />
-            </div>
-          </div>
-        </div>
-      </div>
-    ),
-  },
-  {
-    id: 'b2-design',
+    id: 'thinking-questions',
     kind: 'exercise',
     render: () => (
       <div className="deck-stack">
-        <div className="deck-eyebrow deck-eyebrow-orange">Exercise · 50 min · whole room</div>
-        <h2 className="deck-h2">Design L&amp;P end-to-end.</h2>
-        <p className="deck-body" style={{ marginBottom: 6 }}>Walk the brain canvas one box at a time. Be specific.</p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
-          <span className="region-badge region-badge-memory"><span className="region-badge-dot" />Memory</span>
-          <span className="region-badge region-badge-thinking"><span className="region-badge-dot" />Thinking</span>
-          <span className="region-badge region-badge-deciding"><span className="region-badge-dot" />Deciding</span>
-          <span className="region-badge region-badge-creating"><span className="region-badge-dot" />Creating</span>
-        </div>
+        <div className="deck-eyebrow deck-eyebrow-orange">Thinking audit — questions for the room</div>
+        <h2 className="deck-h2">What AI does your team actually use?</h2>
         <ul className="deck-rules">
-          <li>Ben leads, others build. Pick a real upcoming campaign as the worked example.</li>
-          <li><strong>Memory:</strong> what context does this stage need, and where does it actually live today vs where should it live?</li>
-          <li><strong>Thinking:</strong> name every agentic moment — which LLM, with what context, doing what?</li>
-          <li><strong>Deciding:</strong> where does the next action get logged? Same place every time.</li>
-          <li>Address Camilla&rsquo;s tour-planning question explicitly: how does this scale to Deloitte 60?</li>
+          <li>Which AI tools does your team use regularly? Be honest — not what you think you should use, what you actually open.</li>
+          <li>Is there a single default LLM across the team — or is everyone on different tools?</li>
+          <li>What tasks do you use AI for most? What do you still do entirely manually that you probably shouldn't?</li>
+          <li>When AI gives you a bad answer — what's usually the reason? Wrong tool, wrong prompt, or missing context?</li>
+          <li>What's the one task where, if AI worked reliably, it would save you the most time per week?</li>
         </ul>
       </div>
     ),
   },
   {
-    id: 'b2-report',
-    kind: 'exercise',
+    id: 'thinking-tool-mapping',
+    kind: 'standard',
     render: () => (
-      <div className="deck-stack">
-        <div className="deck-eyebrow deck-eyebrow-orange">Discussion · 25 min</div>
-        <h2 className="deck-h2">Pressure-test it.</h2>
-        <ul className="deck-rules">
-          <li>Where would this break? Which client would push back?</li>
-          <li>Where does context leak — what does the next stage not get cleanly?</li>
-          <li>Capture spikes as we go: what would we need to build to prove this works?</li>
-        </ul>
+      <div className="deck-stack-tight">
+        <div className="deck-eyebrow">Thinking — which AI for what</div>
+        <h2 className="deck-h2">Map your team's default AI by task.</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <ToolCandidateRow region="thinking" label="Drafting &amp; writing" ids={['chatgpt', 'claude', 'gemini']} />
+          <ToolCandidateRow region="thinking" label="Research &amp; analysis" ids={['chatgpt', 'claude', 'gemini']} />
+          <ToolCandidateRow region="thinking" label="Summarising &amp; synthesis" ids={['claude', 'chatgpt', 'gemini']} />
+          <ToolCandidateRow region="thinking" label="Coding &amp; automation" ids={['claude', 'chatgpt', 'gemini']} />
+        </div>
+        <p className="deck-footnote">One default per task. Outliers allowed — but named, with a reason.</p>
       </div>
     ),
   },
   {
-    id: 'tasks-section',
+    id: 'deciding-section',
     kind: 'section',
     render: () => (
       <div className="deck-section">
         <div className="deck-section-num">03</div>
-        <h2 className="deck-section-title">Your tasks, your tools</h2>
-        <div className="deck-section-meta">An individual exercise — then we land on Monday.</div>
+        <h2 className="deck-section-title">Deciding</h2>
+        <div className="deck-section-meta">Where actions live — and how work actually moves forward.</div>
       </div>
     ),
   },
   {
-    id: 'individual-mapping',
-    kind: 'exercise',
+    id: 'deciding-what-it-is',
+    kind: 'standard',
     render: () => (
-      <div className="deck-stack-tight">
-        <div className="deck-eyebrow deck-eyebrow-orange">Exercise · 8 min solo, then 12 min group</div>
-        <h2 className="deck-h2">On stickies — what you do, what you reach for, where it lives.</h2>
-        <p className="deck-body" style={{ marginBottom: 12 }}>
-          Three columns each. We&rsquo;ll put them on the wall and look across the room together.
-        </p>
-        <div className="task-mapping-grid">
-          <div className="task-mapping-col task-mapping-col-thinking">
-            <div className="task-mapping-num">01</div>
-            <div className="task-mapping-head">Tasks you own</div>
-            <div className="task-mapping-q">In a typical campaign — what do you actually do? List the recurring tasks. One per sticky.</div>
+      <div className="deck-stack">
+        <div className="deck-eyebrow">Deciding — The prefrontal &amp; cingulate cortex</div>
+        <h2 className="deck-h2">Where do decisions and actions end up?</h2>
+        <p className="deck-body">Deciding is the action layer — where work gets captured, assigned, tracked, and moved forward. In most organisations, this is the layer most damaged by fragmentation: actions in emails, tasks in chat threads, decisions in people's heads. Without a reliable Deciding layer, AI can reason all it wants — but nothing gets done.</p>
+        <div className="deck-three-up">
+          <div className="deck-tile">
+            <div className="deck-tile-num">01</div>
+            <div className="deck-tile-title">Capture</div>
+            <div className="deck-tile-meta">When an action is agreed — where does it go? Same place every time, or wherever feels right?</div>
           </div>
-          <div className="task-mapping-col task-mapping-col-deciding">
-            <div className="task-mapping-num">02</div>
-            <div className="task-mapping-head">Tools you reach for</div>
-            <div className="task-mapping-q">Next to each task — which tool do you actually open first? Honest answer, not the official one.</div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">02</div>
+            <div className="deck-tile-title">Track</div>
+            <div className="deck-tile-meta">Can you see at a glance what's in progress, what's blocked, and what's due?</div>
           </div>
-          <div className="task-mapping-col task-mapping-col-memory">
-            <div className="task-mapping-num">03</div>
-            <div className="task-mapping-head">Where it gets collected</div>
-            <div className="task-mapping-q">Where does the output of that task end up? Drive folder? Inbox? Sheet? Lost?</div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">03</div>
+            <div className="deck-tile-title">Progress</div>
+            <div className="deck-tile-meta">Does work move forward without someone manually chasing — or is chasing the system?</div>
           </div>
         </div>
-        <p className="deck-footnote">Group review: which tasks have a home, which don&rsquo;t, and where the same task lives in three different places.</p>
+        <p className="deck-footnote">A fragmented Deciding layer is where AI value goes to die.</p>
       </div>
     ),
   },
   {
-    id: 'monday-process',
+    id: 'deciding-questions',
+    kind: 'exercise',
+    render: () => (
+      <div className="deck-stack">
+        <div className="deck-eyebrow deck-eyebrow-orange">Deciding audit — questions for the room</div>
+        <h2 className="deck-h2">How does work actually move forward in your organisation?</h2>
+        <ul className="deck-rules">
+          <li>When a decision is made in a meeting, what happens next? Is there a single place it gets written down?</li>
+          <li>Does everyone on the team track their work in the same system — or does each person have their own approach?</li>
+          <li>How do you know what's blocked or overdue without asking someone directly?</li>
+          <li>In the last month, what fell through the cracks — and why?</li>
+          <li>What would have to be true for your current system to be the single source of truth for all active work?</li>
+        </ul>
+      </div>
+    ),
+  },
+  {
+    id: 'deciding-five-gates',
     kind: 'standard',
     render: () => (
       <div className="deck-stack-tight">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
-          <span className="region-badge region-badge-deciding"><span className="region-badge-dot" />Deciding</span>
-          <span className="deck-eyebrow" style={{ marginBottom: 0 }}>The Monday question</span>
-        </div>
-        <h2 className="deck-h2">What needs to be true for Monday to actually work?</h2>
-        <p className="deck-body" style={{ marginBottom: 14 }}>
-          We&rsquo;re not asking &ldquo;Monday or not&rdquo; — we&rsquo;re asking &ldquo;what would have to be true for it to be the home, every time?&rdquo; Five gates. Walk them.
-        </p>
+        <div className="deck-eyebrow">Deciding — the five gates</div>
+        <h2 className="deck-h2">Every action has five moments. Map yours.</h2>
         <div className="monday-flow">
           <div className="monday-flow-step">
             <div className="monday-flow-num">01</div>
             <div className="monday-flow-name">Capture</div>
-            <div className="monday-flow-q">What triggers a new item? Who creates it? Within how long?</div>
+            <div className="monday-flow-q">What triggers a new action? Who creates it? Within how long of it being agreed?</div>
           </div>
           <div className="monday-flow-arrow">→</div>
           <div className="monday-flow-step">
             <div className="monday-flow-num">02</div>
             <div className="monday-flow-name">Review</div>
-            <div className="monday-flow-q">Who validates it&rsquo;s real? On what cadence — daily standup, weekly?</div>
+            <div className="monday-flow-q">Who validates it's real and prioritised? On what cadence?</div>
           </div>
           <div className="monday-flow-arrow">→</div>
           <div className="monday-flow-step">
@@ -613,123 +390,148 @@ const slides: Slide[] = [
           <div className="monday-flow-step">
             <div className="monday-flow-num">04</div>
             <div className="monday-flow-name">Action</div>
-            <div className="monday-flow-q">Who picks it up? Where do updates go — same place, same field?</div>
+            <div className="monday-flow-q">Who picks it up? Where do updates go — same place, same field, every time?</div>
           </div>
           <div className="monday-flow-arrow">→</div>
           <div className="monday-flow-step">
             <div className="monday-flow-num">05</div>
             <div className="monday-flow-name">Close</div>
-            <div className="monday-flow-q">What defines done? Who confirms? What gets archived where?</div>
+            <div className="monday-flow-q">What defines done? Who confirms? What gets archived and where?</div>
           </div>
         </div>
-        <p className="deck-footnote">If we can answer all five clearly — Monday becomes the home. If we can&rsquo;t — we know exactly what to fix or replace.</p>
+        <p className="deck-footnote">If you can answer all five clearly — you have a Deciding layer. If you can't — you know what to fix.</p>
       </div>
     ),
   },
   {
-    id: 'b4-action-tracking',
+    id: 'creating-section',
+    kind: 'section',
+    render: () => (
+      <div className="deck-section">
+        <div className="deck-section-num">04</div>
+        <h2 className="deck-section-title">Creating</h2>
+        <div className="deck-section-meta">The skills, agents, and tools that produce the work.</div>
+      </div>
+    ),
+  },
+  {
+    id: 'creating-what-it-is',
     kind: 'standard',
     render: () => (
       <div className="deck-stack">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
-          <span className="region-badge region-badge-deciding"><span className="region-badge-dot" />Deciding</span>
-          <span className="deck-eyebrow" style={{ marginBottom: 0 }}>Decision 1 — action tracking</span>
-        </div>
-        <h2 className="deck-h2">Monday, Productive, or commit-with-ownership.</h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
-          <ToolChip id="monday" />
-          <ToolChip id="productive" />
-          <ToolChip id="sheets" />
-        </div>
-        <div className="deck-fork">
-          <div className="deck-fork-side">
-            <div className="deck-fork-label">Re-commit</div>
-            <div className="deck-fork-detail">Monday becomes the SoT. L&amp;P lives on it. Everyone trained. XLS retired. One named owner.</div>
+        <div className="deck-eyebrow">Creating — Motor cortex &amp; cerebellum</div>
+        <h2 className="deck-h2">What does your AI actually produce?</h2>
+        <p className="deck-body">Creating is the compositional layer — where all four parts come together. Memory provides the context. Thinking does the reasoning. Deciding manages the output. Creating is the moment of execution: documents written, analyses run, emails drafted, workflows triggered. This is where humans and AI collaborate most directly.</p>
+        <div className="deck-three-up">
+          <div className="deck-tile">
+            <div className="deck-tile-num">01</div>
+            <div className="deck-tile-title">Skills</div>
+            <div className="deck-tile-meta">The repeatable tasks AI can run: drafting, formatting, summarising, translating, coding.</div>
           </div>
-          <div className="deck-fork-vs">/</div>
-          <div className="deck-fork-side">
-            <div className="deck-fork-label">Replace</div>
-            <div className="deck-fork-detail">Productive (Mark&rsquo;s already demoed it) — costing/quoting baked in. Migration date set today.</div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">02</div>
+            <div className="deck-tile-title">Agents</div>
+            <div className="deck-tile-meta">Automated workflows that chain tasks — triggered by an event, running without a human in the loop.</div>
+          </div>
+          <div className="deck-tile">
+            <div className="deck-tile-num">03</div>
+            <div className="deck-tile-title">Quality</div>
+            <div className="deck-tile-meta">Human oversight at the right moments. What needs a review, and what can ship direct?</div>
           </div>
         </div>
-        <p className="deck-footnote">Mark walks the team through what he saw in the Productive demo. Then we decide.</p>
+        <p className="deck-footnote">Creating is built on top of the other three. Get Memory, Thinking and Deciding right first.</p>
       </div>
     ),
   },
   {
-    id: 'b4-ai-stack',
-    kind: 'standard',
+    id: 'creating-questions',
+    kind: 'exercise',
     render: () => (
-      <div className="deck-stack-tight">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 4 }}>
-          <span className="region-badge region-badge-thinking"><span className="region-badge-dot" />Thinking</span>
-          <span className="region-badge region-badge-memory"><span className="region-badge-dot" />Memory</span>
-          <span className="deck-eyebrow" style={{ marginBottom: 0 }}>Decision 2 — AI assistance by task</span>
-        </div>
-        <h2 className="deck-h2">Which tool, for what?</h2>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <ToolCandidateRow
-            region="thinking"
-            label="Drafting briefs"
-            ids={['docs', 'claude', 'chatgpt']}
-          />
-          <ToolCandidateRow
-            region="thinking"
-            label="Asking AI"
-            ids={['chatgpt', 'claude', 'gemini', 'base44']}
-          />
-          <ToolCandidateRow
-            region="memory"
-            label="Meeting capture"
-            ids={['read', 'granola', 'docs']}
-          />
-          <ToolCandidateRow
-            region="memory"
-            label="Storing research"
-            ids={['drive', 'notion', 'docs']}
-          />
-        </div>
-        <p className="deck-footnote">One default per task. Outliers allowed — but named, with a reason.</p>
+      <div className="deck-stack">
+        <div className="deck-eyebrow deck-eyebrow-orange">Creating audit — questions for the room</div>
+        <h2 className="deck-h2">What are you producing — and what could AI produce for you?</h2>
+        <ul className="deck-rules">
+          <li>What are the most time-consuming outputs your team produces? Documents, reports, proposals, comms, analysis — list them.</li>
+          <li>Which of those outputs follow a pattern — the same structure, the same type of content, every time?</li>
+          <li>Where is AI already helping you produce things? Is the quality good enough to use without heavy editing?</li>
+          <li>Where have you tried AI for output and it didn't work — what went wrong?</li>
+          <li>If you could automate one complete workflow end-to-end, which one would have the biggest impact?</li>
+        </ul>
       </div>
     ),
   },
   {
-    id: 'parking-lot',
+    id: 'creating-exercise',
+    kind: 'exercise',
+    render: () => (
+      <div className="deck-stack-tight">
+        <div className="deck-eyebrow deck-eyebrow-orange">Creating — output mapping · 10 min</div>
+        <h2 className="deck-h2">What gets made. How it gets made. Who checks it.</h2>
+        <div className="task-mapping-grid">
+          <div className="task-mapping-col task-mapping-col-thinking">
+            <div className="task-mapping-num">01</div>
+            <div className="task-mapping-head">What we produce</div>
+            <div className="task-mapping-q">List the main outputs your team creates regularly. Proposals, reports, briefs, comms, analysis, decks.</div>
+          </div>
+          <div className="task-mapping-col task-mapping-col-deciding">
+            <div className="task-mapping-num">02</div>
+            <div className="task-mapping-head">AI's current role</div>
+            <div className="task-mapping-q">For each — is AI involved now? Not at all / assists / drafts / produces autonomously?</div>
+          </div>
+          <div className="task-mapping-col task-mapping-col-memory">
+            <div className="task-mapping-num">03</div>
+            <div className="task-mapping-head">The quality gate</div>
+            <div className="task-mapping-q">Who reviews it before it goes? Every time, sometimes, or never?</div>
+          </div>
+        </div>
+        <p className="deck-footnote">The goal: AI handles the pattern work, humans own the judgment calls.</p>
+      </div>
+    ),
+  },
+  {
+    id: 'synthesis',
     kind: 'standard',
     render: () => (
       <div className="deck-stack-tight">
-        <div className="deck-eyebrow">Parking lot review</div>
-        <h2 className="deck-h2">What we said we&rsquo;d come back to.</h2>
-        <p className="deck-body" style={{ marginBottom: 14 }}>
-          These came up in pre-work and through the day. Not landing them today — but naming where each one goes.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div className="parking-row">
-            <div className="parking-row-topic">AI ethics &amp; client confidentiality</div>
-            <div className="parking-row-arrow">→</div>
-            <div className="parking-row-home">Separate training session — JP to schedule with Camilla.</div>
+        <div className="deck-eyebrow">Synthesis</div>
+        <h2 className="deck-h2">Your AI brain, mapped.</h2>
+        <div className="brain-stage">
+          <div className="brain-svg-wrap">
+            <BrainAnatomy showLabels showSynapses />
           </div>
-          <div className="parking-row">
-            <div className="parking-row-topic">AI moodboarding</div>
-            <div className="parking-row-arrow">→</div>
-            <div className="parking-row-home">Mark to define what &ldquo;good&rdquo; looks like before we tool it.</div>
-          </div>
-          <div className="parking-row">
-            <div className="parking-row-topic">External creatives in concept dev</div>
-            <div className="parking-row-arrow">→</div>
-            <div className="parking-row-home">Revisit once the core stack is set — Workshop 4 territory.</div>
-          </div>
-          <div className="parking-row">
-            <div className="parking-row-topic">BD → Client-Lead handover</div>
-            <div className="parking-row-arrow">→</div>
-            <div className="parking-row-home">Mark + Camilla offline conversation. Not a workshop topic.</div>
-          </div>
-          <div className="parking-row">
-            <div className="parking-row-topic">Skills, agents &amp; tools — the &ldquo;Creating&rdquo; layer</div>
-            <div className="parking-row-arrow">→</div>
-            <div className="parking-row-home">Workshop 3. Once Memory, Thinking and Deciding are set.</div>
+          <div className="brain-legend">
+            <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#7902f3' } as React.CSSProperties}>
+              <div className="brain-legend-marker" style={{ ['--legend-colour' as string]: '#7902f3' } as React.CSSProperties} />
+              <div className="brain-legend-body">
+                <div className="brain-legend-tag">Memory</div>
+                <div className="brain-legend-title">Where your context lives</div>
+              </div>
+            </div>
+            <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#f46c42' } as React.CSSProperties}>
+              <div className="brain-legend-marker" style={{ ['--legend-colour' as string]: '#f46c42' } as React.CSSProperties} />
+              <div className="brain-legend-body">
+                <div className="brain-legend-tag">Thinking</div>
+                <div className="brain-legend-title">Your default AI layer</div>
+              </div>
+            </div>
+            <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#c59f4d' } as React.CSSProperties}>
+              <div className="brain-legend-marker" style={{ ['--legend-colour' as string]: '#c59f4d' } as React.CSSProperties} />
+              <div className="brain-legend-body">
+                <div className="brain-legend-tag">Deciding</div>
+                <div className="brain-legend-title">Where actions go</div>
+              </div>
+            </div>
+            <div className="brain-legend-item" style={{ ['--legend-colour' as string]: '#d1f503' } as React.CSSProperties}>
+              <div className="brain-legend-marker" style={{ ['--legend-colour' as string]: '#d1f503' } as React.CSSProperties} />
+              <div className="brain-legend-body">
+                <div className="brain-legend-tag">Creating</div>
+                <div className="brain-legend-title">What AI produces for you</div>
+              </div>
+            </div>
           </div>
         </div>
+        <p className="deck-body" style={{ marginTop: 12 }}>The four parts don't work in isolation. A strong Thinking layer with a weak Memory layer is a capable AI working blind. A strong Memory layer with no Deciding layer produces good analysis that never becomes action.</p>
+        <p className="deck-footnote">The goal isn't to be advanced at all four. It's to be intentional about all four.</p>
       </div>
     ),
   },
@@ -741,9 +543,9 @@ const slides: Slide[] = [
         <div className="deck-eyebrow">Questions</div>
         <h1 className="deck-h1" style={{ marginTop: 8 }}>What&rsquo;s still unclear?</h1>
         <p className="deck-body deck-body-large" style={{ marginTop: 18, maxWidth: 720 }}>
-          Anything we haven&rsquo;t addressed. Anything you&rsquo;d challenge. Anything missing from the picture before we move into the build.
+          Anything we haven&rsquo;t addressed. Anything you&rsquo;d challenge. Anything missing from the picture before we move to next steps.
         </p>
-        <p className="deck-footnote deck-footnote-spaced">No bad questions. Surface them now — they&rsquo;re harder to raise once the roadmap lands.</p>
+        <p className="deck-footnote deck-footnote-spaced">No bad questions. Surface them now — they&rsquo;re harder to raise once the recommendations land.</p>
       </div>
     ),
   },
@@ -753,38 +555,38 @@ const slides: Slide[] = [
     render: () => (
       <div className="deck-stack-tight">
         <div className="deck-eyebrow">Next steps</div>
-        <h2 className="deck-h2">What happens between now and Workshop 3.</h2>
+        <h2 className="deck-h2">What happens next.</h2>
         <div className="next-steps-list">
           <div className="next-steps-row">
             <div className="next-steps-when">This week</div>
             <div className="next-steps-what">
-              <div className="next-steps-title">v2 of the L&amp;P workflow drafted</div>
-              <div className="next-steps-detail">JP turns today&rsquo;s canvas + the five Monday gates into a written workflow. Circulated for sign-off.</div>
+              <div className="next-steps-title">Findings synthesised</div>
+              <div className="next-steps-detail">The audit map gets written up — what we heard, where the gaps are, what&rsquo;s most urgent.</div>
             </div>
           </div>
           <div className="next-steps-row">
             <div className="next-steps-when">Next week</div>
             <div className="next-steps-what">
-              <div className="next-steps-title">Monday rebuild on the capture → close framework</div>
-              <div className="next-steps-detail">One named owner reconfigures Monday around the five gates. AUP v0.1 circulated alongside.</div>
+              <div className="next-steps-title">Priorities agreed</div>
+              <div className="next-steps-detail">One conversation to align on which part of the brain to fix first — and what that fix looks like.</div>
             </div>
           </div>
           <div className="next-steps-row">
-            <div className="next-steps-when">Next 14 days</div>
+            <div className="next-steps-when">Next 30 days</div>
             <div className="next-steps-what">
-              <div className="next-steps-title">Spike on a live campaign</div>
-              <div className="next-steps-detail">Run the new workflow end-to-end on one upcoming project. JP joins the kickoff. Captured learnings feed Workshop 3.</div>
+              <div className="next-steps-title">First intervention scoped</div>
+              <div className="next-steps-detail">A concrete first step: a tool decision, a workflow design, a training session, or a quick-win automation.</div>
             </div>
           </div>
           <div className="next-steps-row">
-            <div className="next-steps-when">Workshop 3</div>
+            <div className="next-steps-when">Ongoing</div>
             <div className="next-steps-what">
-              <div className="next-steps-title">Skills, agents &amp; tools — the Creating layer</div>
-              <div className="next-steps-detail">With Memory, Thinking and Deciding set, we design the compositional layer that produces the work. Date TBC.</div>
+              <div className="next-steps-title">The brain gets stronger</div>
+              <div className="next-steps-detail">Each intervention builds on the last. Memory makes Thinking better. Thinking makes Deciding faster. Deciding makes Creating more reliable.</div>
             </div>
           </div>
         </div>
-        <p className="deck-footnote deck-footnote-spaced">Thank you — this is the most useful workshop we&rsquo;ve had so far.</p>
+        <p className="deck-footnote deck-footnote-spaced">Thank you — this is where the real work starts.</p>
       </div>
     ),
   },
@@ -882,7 +684,7 @@ export default function DeckPage() {
       )}
 
       <div className="deck-chrome-top">
-        <div className="deck-brand">ThreePoint · AI Audit Demo · Workshop 2</div>
+        <div className="deck-brand">ThreePoint · 4AI Brain Audit</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button
             onClick={toggleGrid}

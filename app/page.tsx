@@ -16,7 +16,7 @@ export default function Home() {
       textAlign: 'center',
     }}>
       <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#e86830' }}>
-        AI Audit Demo
+        ThreePoint · AI Readiness Workshop
       </div>
       <h1 style={{
         fontFamily: "'DM Serif Display', serif",
@@ -27,10 +27,10 @@ export default function Home() {
         maxWidth: 700,
         margin: 0,
       }}>
-        Workshop 2: Designing the Workflows
+        The 4AI Brain Audit
       </h1>
       <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.6)', maxWidth: 520, lineHeight: 1.6, margin: 0 }}>
-        A standalone deck experience walking through the AI agentic loop framework, the Logistics &amp; Planning workflow, and tool stack decisions.
+        A facilitated workshop that maps your organisation's AI readiness across four dimensions: Memory, Thinking, Deciding, and Creating.
       </p>
       <Link href="/deck" style={{
         display: 'inline-flex',
@@ -45,10 +45,10 @@ export default function Home() {
         fontWeight: 600,
         letterSpacing: '0.01em',
       }}>
-        Open Deck →
+        Open Workshop →
       </Link>
       <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-        ThreePoint · AI Audit Demo
+        ThreePoint · Facilitated by James Poulter
       </p>
     </div>
   )
