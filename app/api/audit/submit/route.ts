@@ -1,7 +1,17 @@
 import { NextResponse } from 'next/server'
-import { createSubmission, getOrCreateUserByEmail } from '@/app/audit/lib/db'
+import {
+  addOrgMember,
+  createSubmission,
+  getOrCreateUserByEmail,
+  getOrg,
+  setSubmissionOrg,
+} from '@/app/audit/lib/db'
 import { newSubmissionId } from '@/app/audit/lib/ids'
 import { score, validateAnswers } from '@/app/audit/lib/scoring'
+import {
+  clearPendingInviteOrg,
+  getPendingInviteOrg,
+} from '@/app/audit/lib/invite-context'
 import type { OrgSize, Source, Submission } from '@/app/audit/lib/types'
 
 export const runtime = 'nodejs'
@@ -51,6 +61,16 @@ export async function POST(req: Request) {
   try {
     const user = await getOrCreateUserByEmail(submission.email, submission.name)
     await createSubmission(submission, user.id)
+
+    const pendingOrgId = getPendingInviteOrg()
+    if (pendingOrgId) {
+      const org = await getOrg(pendingOrgId)
+      if (org) {
+        await setSubmissionOrg(submission.id, org.id)
+        await addOrgMember(org.id, user.id, 'member')
+      }
+      clearPendingInviteOrg()
+    }
   } catch (err) {
     console.error('[audit/submit] db error', err)
     return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 })

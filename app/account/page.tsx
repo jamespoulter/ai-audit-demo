@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/app/auth/lib/session'
-import { listSubmissionsForUser } from '@/app/audit/lib/db'
+import { listOrgsForUser, listSubmissionsForUser } from '@/app/audit/lib/db'
 import { BUCKET_LABEL } from '@/app/audit/lib/scoring'
+import { CreateOrgForm } from './CreateOrgForm'
 
 export const dynamic = 'force-dynamic'
 
@@ -10,7 +11,10 @@ export default async function AccountPage() {
   const user = await getCurrentUser()
   if (!user) redirect('/sign-in')
 
-  const submissions = await listSubmissionsForUser(user)
+  const [submissions, orgs] = await Promise.all([
+    listSubmissionsForUser(user),
+    listOrgsForUser(user.id),
+  ])
 
   return (
     <main className="audit-shell">
@@ -26,10 +30,9 @@ export default async function AccountPage() {
           </form>
         </div>
 
-        <h1 className="audit-h1">{user.name ? `Welcome, ${user.name}` : 'Your audits'}</h1>
+        <h1 className="audit-h1">{user.name ? `Welcome, ${user.name}` : 'Your account'}</h1>
         <p className="audit-lede">
-          Every audit you've submitted shows up here. Open one to revisit the radar, recommendations,
-          and shareable link.
+          Your past audits and team workspaces in one place.
         </p>
 
         <div className="audit-cta-row">
@@ -38,14 +41,38 @@ export default async function AccountPage() {
           </Link>
         </div>
 
-        {submissions.length === 0 ? (
-          <div className="audit-narrative" style={{ marginTop: 28 }}>
-            <h2 className="audit-h3" style={{ marginTop: 0 }}>No audits yet</h2>
-            <p>You haven't submitted an audit under this email. Take one now and it'll appear here automatically.</p>
-          </div>
-        ) : (
-          <section style={{ marginTop: 32 }}>
-            <h2 className="audit-h3" style={{ marginTop: 0 }}>Your audits ({submissions.length})</h2>
+        <section style={{ marginTop: 24 }}>
+          <h2 className="audit-h3" style={{ marginTop: 0 }}>Teams</h2>
+          {orgs.length === 0 ? (
+            <p className="audit-lede-small" style={{ marginBottom: 12 }}>
+              Create a team workspace to collect responses from colleagues and view an aggregate radar.
+            </p>
+          ) : (
+            <ul className="account-submission-list" style={{ marginBottom: 16 }}>
+              {orgs.map(o => (
+                <li key={o.id}>
+                  <Link href={`/account/org/${o.id}`} className="account-submission-card" style={{ gridTemplateColumns: '1fr auto 24px' }}>
+                    <div className="account-submission-meta">
+                      <span className="account-submission-date">{o.name}</span>
+                      <span className="account-submission-org">
+                        {o.role === 'admin' ? 'Admin' : 'Member'} · created {new Date(o.createdAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                    <span className="account-submission-bucket">Open dashboard</span>
+                    <div className="account-submission-arrow">→</div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+          <CreateOrgForm />
+        </section>
+
+        <section style={{ marginTop: 40 }}>
+          <h2 className="audit-h3" style={{ marginTop: 0 }}>Your audits ({submissions.length})</h2>
+          {submissions.length === 0 ? (
+            <p className="audit-lede-small">You haven't submitted an audit under this email yet. Take one above and it'll appear here.</p>
+          ) : (
             <ul className="account-submission-list">
               {submissions.map(s => {
                 const date = new Date(s.createdAt).toLocaleDateString(undefined, {
@@ -74,8 +101,8 @@ export default async function AccountPage() {
                 )
               })}
             </ul>
-          </section>
-        )}
+          )}
+        </section>
       </div>
     </main>
   )

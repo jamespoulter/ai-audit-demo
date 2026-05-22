@@ -5620,3 +5620,43 @@ body::before {
   .account-submission-chips { justify-content: flex-start; }
   .account-submission-arrow { display: none; }
 }
+
+/* ===== Org dashboard / members ====================================== */
+.org-member-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.org-member-list li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.org-member-list li:first-child { border-top: 0; }
+.org-member-meta {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.org-member-role {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: var(--cream);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .org-member-list li { grid-template-columns: 1fr; gap: 4px; padding: 10px 14px; }
+}
