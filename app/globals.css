@@ -3149,10 +3149,10 @@ body::before {
 .deck-rules {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 38ch;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 48px;
+  width: 100%;
 }
 
 .deck-rules li {
@@ -3161,6 +3161,7 @@ body::before {
   font-size: clamp(18px, 1.5vw, 22px);
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.5;
+  max-width: 52ch;
 }
 
 .deck-rules li::before {
@@ -3171,6 +3172,10 @@ body::before {
   width: 14px;
   height: 1px;
   background: var(--orange);
+}
+
+@media (max-width: 900px) {
+  .deck-rules { grid-template-columns: 1fr; gap: 14px; }
 }
 
 .deck-callout {
