@@ -5441,3 +5441,69 @@ body::before {
   .avoid-break { break-inside: avoid; page-break-inside: avoid; }
   .audit-cta, .audit-sharebar, .audit-back { display: none !important; }
 }
+
+/* ===== Audit micro app — light-theme overrides for deck components ===== */
+/* ToolCandidateRow + ToolChip were styled for the dark deck.
+   Re-skin them when rendered inside .audit-rec or .audit-print
+   so they read on the cream background. */
+
+.audit-rec .tool-candidate-row,
+.audit-print .tool-candidate-row {
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-left-width: 4px;
+  border-radius: 10px;
+  margin-top: 4px;
+}
+
+.audit-rec .tool-candidate-label,
+.audit-print .tool-candidate-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+/* "Pick one →" is deck phrasing — in the audit, we show a list of
+   recommended tools, not a single choice. Hide it. */
+.audit-rec .tool-candidate-pick,
+.audit-print .tool-candidate-pick {
+  display: none;
+}
+
+.audit-rec .tool-candidate-options,
+.audit-print .tool-candidate-options {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.audit-rec .tool-chip,
+.audit-print .tool-chip {
+  background: white;
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+.audit-rec .tool-chip:hover,
+.audit-print .tool-chip:hover {
+  background: var(--cream-dark);
+  border-color: var(--text-muted);
+}
+
+@media (max-width: 540px) {
+  .audit-rec .tool-candidate-row,
+  .audit-print .tool-candidate-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .audit-rec .tool-candidate-options,
+  .audit-print .tool-candidate-options {
+    justify-content: flex-start;
+  }
+}
