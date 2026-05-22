@@ -65,6 +65,10 @@ export default function Home() {
           Open workshop deck
         </Link>
       </div>
+      <Link href="/sign-in" style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', textDecoration: 'none', marginTop: 8 }}>
+        Already taken the audit? <span style={{ color: 'white', fontWeight: 600 }}>Sign in →</span>
+      </Link>
+
       <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: 16 }}>
         ThreePoint · Facilitated by James Poulter
       </p>

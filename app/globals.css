@@ -5512,3 +5512,111 @@ body::before {
     justify-content: flex-start;
   }
 }
+
+/* ===== Account dashboard ============================================ */
+.account-submission-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.account-submission-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto 1fr 24px;
+  align-items: center;
+  gap: 24px;
+  padding: 18px 22px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s, transform 0.05s;
+}
+.account-submission-card:hover {
+  border-color: var(--text-muted);
+}
+.account-submission-card:active {
+  transform: translateY(1px);
+}
+
+.account-submission-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.account-submission-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.account-submission-org {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.account-submission-score {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.account-submission-pct {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 28px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.account-submission-bucket {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.account-submission-chips {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.account-submission-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--cream);
+}
+.account-submission-pill-label {
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+.account-submission-pill-pct {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.account-submission-arrow {
+  color: var(--text-muted);
+  font-size: 20px;
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .account-submission-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .account-submission-chips { justify-content: flex-start; }
+  .account-submission-arrow { display: none; }
+}

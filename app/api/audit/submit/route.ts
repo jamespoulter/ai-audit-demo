@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createSubmission } from '@/app/audit/lib/db'
+import { createSubmission, getOrCreateUserByEmail } from '@/app/audit/lib/db'
 import { newSubmissionId } from '@/app/audit/lib/ids'
 import { score, validateAnswers } from '@/app/audit/lib/scoring'
 import type { OrgSize, Source, Submission } from '@/app/audit/lib/types'
@@ -49,7 +49,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    await createSubmission(submission)
+    const user = await getOrCreateUserByEmail(submission.email, submission.name)
+    await createSubmission(submission, user.id)
   } catch (err) {
     console.error('[audit/submit] db error', err)
     return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 })
