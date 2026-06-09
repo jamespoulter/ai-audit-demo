@@ -48,7 +48,7 @@ export default async function ResultsPage({ params }: { params: Params }) {
           </div>
         </section>
 
-        <ShareBar id={submission.id} />
+        <ShareBar id={submission.id} bookingUrl={process.env.NEXT_PUBLIC_BOOKING_URL} />
 
         <section className="audit-narrative">
           <h2 className="audit-h3">What this means</h2>

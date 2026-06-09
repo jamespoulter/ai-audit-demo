@@ -2,10 +2,14 @@ import { NextResponse } from 'next/server'
 import {
   addOrgMember,
   createSubmission,
+  enqueueHubspotSync,
   getOrCreateUserByEmail,
   getOrg,
+  markHubspotSync,
   setSubmissionOrg,
 } from '@/app/audit/lib/db'
+import { hubspotEnabled } from '@/app/lib/hubspot'
+import { syncSubmissionToHubSpot, type Attribution } from '@/app/lib/hubspot-sync'
 import { newSubmissionId } from '@/app/audit/lib/ids'
 import { score, validateAnswers } from '@/app/audit/lib/scoring'
 import {
@@ -76,5 +80,35 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'storage_unavailable' }, { status: 503 })
   }
 
+  // CRM sync. Queue-then-sync so a crash or HubSpot outage never loses the
+  // lead: the row stays 'pending' and the cron retries it.
+  if (hubspotEnabled()) {
+    const attribution = sanitizeAttribution(body.attribution)
+    const origin = new URL(req.url).origin
+    try {
+      await enqueueHubspotSync(submission.id, attribution, origin)
+      await syncSubmissionToHubSpot(submission, origin, attribution)
+      await markHubspotSync(submission.id, 'done')
+    } catch (err) {
+      console.error('[audit/submit] hubspot sync failed — queued for retry', err)
+      await markHubspotSync(submission.id, 'error', String(err)).catch(() => {})
+    }
+  }
+
   return NextResponse.json({ id: submission.id })
+}
+
+const ATTRIBUTION_KEYS: (keyof Attribution)[] = [
+  'hutk', 'pageUri', 'pageName',
+  'utmSource', 'utmMedium', 'utmCampaign', 'utmTerm', 'utmContent',
+]
+
+function sanitizeAttribution(raw: unknown): Attribution | null {
+  if (!raw || typeof raw !== 'object') return null
+  const out: Record<string, string> = {}
+  for (const key of ATTRIBUTION_KEYS) {
+    const v = (raw as Record<string, unknown>)[key]
+    if (typeof v === 'string' && v.length > 0) out[key] = v.slice(0, 500)
+  }
+  return Object.keys(out).length > 0 ? (out as Attribution) : null
 }

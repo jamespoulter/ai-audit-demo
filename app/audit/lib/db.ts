@@ -119,6 +119,21 @@ async function ensureSchema(): Promise<void> {
     );
   `
   await sql`create index if not exists org_invites_org_idx on org_invites (org_id);`
+
+  // ── HubSpot sync queue ──────────────────────────────────────────
+  await sql`
+    create table if not exists hubspot_sync_queue (
+      submission_id  text primary key,
+      status         text not null default 'pending',
+      attempts       int  not null default 0,
+      last_error     text,
+      attribution    jsonb,
+      origin         text,
+      created_at     timestamptz not null default now(),
+      updated_at     timestamptz not null default now()
+    );
+  `
+  await sql`create index if not exists hubspot_queue_status_idx on hubspot_sync_queue (status);`
 }
 
 function ensureReady(): Promise<void> {
@@ -415,6 +430,83 @@ function rowToOrg(row: Record<string, unknown>): OrgRow {
     createdAt: new Date(row.created_at as string).toISOString(),
     createdBy: row.created_by as string,
   }
+}
+
+// ─── HubSpot sync queue ────────────────────────────────────────────
+export type HubspotQueueRow = {
+  submissionId: string
+  status: 'pending' | 'done' | 'error'
+  attempts: number
+  lastError: string | null
+  attribution: Record<string, string> | null
+  origin: string | null
+}
+
+export async function enqueueHubspotSync(
+  submissionId: string,
+  attribution: Record<string, string> | null,
+  origin: string
+): Promise<void> {
+  await ensureReady()
+  const sql = getSql()
+  await sql`
+    insert into hubspot_sync_queue (submission_id, attribution, origin)
+    values (${submissionId}, ${attribution ? JSON.stringify(attribution) : null}::jsonb, ${origin})
+    on conflict (submission_id) do update
+      set status = 'pending', updated_at = now()
+  `
+}
+
+export async function markHubspotSync(
+  submissionId: string,
+  status: 'done' | 'error',
+  error?: string
+): Promise<void> {
+  await ensureReady()
+  const sql = getSql()
+  await sql`
+    update hubspot_sync_queue
+    set status = ${status},
+        attempts = attempts + 1,
+        last_error = ${error ?? null},
+        updated_at = now()
+    where submission_id = ${submissionId}
+  `
+}
+
+const MAX_SYNC_ATTEMPTS = 6
+
+export async function listPendingHubspotSync(limit: number): Promise<HubspotQueueRow[]> {
+  await ensureReady()
+  const sql = getSql()
+  const rows = await sql`
+    select * from hubspot_sync_queue
+    where status in ('pending', 'error') and attempts < ${MAX_SYNC_ATTEMPTS}
+    order by updated_at asc
+    limit ${limit}
+  ` as Record<string, unknown>[]
+  return rows.map(r => ({
+    submissionId: r.submission_id as string,
+    status: r.status as HubspotQueueRow['status'],
+    attempts: r.attempts as number,
+    lastError: (r.last_error as string | null) ?? null,
+    attribution: (r.attribution as Record<string, string> | null) ?? null,
+    origin: (r.origin as string | null) ?? null,
+  }))
+}
+
+/** Backfill helper: queue every submission that has never been synced. */
+export async function enqueueUnsyncedSubmissions(origin: string): Promise<number> {
+  await ensureReady()
+  const sql = getSql()
+  const rows = await sql`
+    insert into hubspot_sync_queue (submission_id, origin)
+    select s.id, ${origin} from submissions s
+    left join hubspot_sync_queue q on q.submission_id = s.id
+    where q.submission_id is null
+    returning submission_id
+  ` as Record<string, unknown>[]
+  return rows.length
 }
 
 // ─── Invites ───────────────────────────────────────────────────────

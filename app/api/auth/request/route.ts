@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createAuthToken } from '@/app/audit/lib/db'
 import { newMagicLinkToken } from '@/app/auth/lib/session'
 import { magicLinkEmail, sendEmail } from '@/app/auth/lib/email'
+import { syncSubscriberToHubSpot } from '@/app/lib/hubspot-sync'
 
 export const runtime = 'nodejs'
 
@@ -43,6 +44,14 @@ export async function POST(req: Request) {
     // We still return success to avoid leaking which emails exist — but log
     // the URL so the operator can debug from runtime logs.
     console.warn(`[auth/request] failover — magic link for ${email}: ${url}`)
+  }
+
+  // Make sign-ups visible in CRM as subscribers. Best-effort — a HubSpot
+  // hiccup must never block sign-in.
+  try {
+    await syncSubscriberToHubSpot(email)
+  } catch (err) {
+    console.warn('[auth/request] hubspot subscriber sync failed', err)
   }
 
   return NextResponse.json({ ok: true })

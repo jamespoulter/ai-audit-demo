@@ -56,6 +56,24 @@ AUTH_FROM_EMAIL=ThreePoint Audit <noreply@your-domain.com>  # optional; defaults
 
 Without `RESEND_API_KEY`, magic-link and invite URLs are logged to runtime logs instead of being sent — fine for local dev, not for production.
 
+For the HubSpot marketing pipeline (see `docs/hubspot-runbook.md` for full setup):
+
+```
+HUBSPOT_ACCESS_TOKEN=pat-eu1-...        # private app token; sync is a no-op without it
+HUBSPOT_PORTAL_ID=145752899
+HUBSPOT_REGION=eu1
+CRON_SECRET=...                         # protects /api/cron + /api/admin routes
+HUBSPOT_AUDIT_FORM_GUID=...             # optional hidden form for hutk attribution
+NEXT_PUBLIC_HUBSPOT_PORTAL_ID=145752899 # enables the HubSpot tracking script
+NEXT_PUBLIC_BOOKING_URL=...             # "Book a working session" CTA on results
+```
+
+Every audit submission is upserted to HubSpot (contact + company + scores +
+timeline note) via a Neon-backed retry queue; `/api/cron/hubspot-sync` drains
+failures every 15 minutes (vercel.json cron). `/api/admin/hubspot-setup`
+creates all required contact properties; `/api/admin/hubspot-backfill` queues
+historic submissions.
+
 For future phases:
 
 ```

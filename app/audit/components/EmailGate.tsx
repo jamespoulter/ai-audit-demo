@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { clearDraft, loadDraft } from '../lib/clientStore'
+import { loadAttribution } from '../lib/attribution'
 import type { OrgSize } from '../lib/types'
 
 const ORG_SIZES: { value: OrgSize; label: string }[] = [
@@ -54,6 +55,7 @@ export function EmailGate() {
           source: 'self-serve',
           answers: draft.answers,
           marketingOptIn,
+          attribution: loadAttribution(),
         }),
       })
       if (!res.ok) {

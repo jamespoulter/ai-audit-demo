@@ -1,5 +1,10 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
+import { AttributionCapture } from './AttributionCapture'
+
+const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID
+const HUBSPOT_REGION = process.env.NEXT_PUBLIC_HUBSPOT_REGION || 'eu1'
 
 export const metadata: Metadata = {
   title: 'AI Audit Demo',
@@ -24,7 +29,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AttributionCapture />
+        {children}
+        {HUBSPOT_PORTAL_ID && (
+          <Script
+            id="hs-script-loader"
+            src={`https://js-${HUBSPOT_REGION}.hs-scripts.com/${HUBSPOT_PORTAL_ID}.js`}
+            strategy="afterInteractive"
+          />
+        )}
+      </body>
     </html>
   )
 }
