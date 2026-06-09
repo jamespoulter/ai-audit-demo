@@ -134,3 +134,22 @@ Env additions: `HUBSPOT_ACCESS_TOKEN`, `HUBSPOT_PORTAL_ID=145752899`.
 
 Phase 0 first (the waitlist may be silently broken — live revenue risk), Phase 1 + 2
 together as the core build, Phase 3 the same week, Phase 4 ongoing.
+
+---
+
+## Status
+
+**Built (this branch + the matching kt-claude branch):**
+- Phase 0 code: `/api/waitlist` server route (Forms API + CRM fallback), hutk
+  forwarding, configurable subscription type ID, tracking script on the site.
+- Phase 1 as code: `/api/admin/hubspot-setup` creates the property group, all
+  `audit_*` properties and `audience_type` — one curl after deploy.
+- Phase 2 complete: HubSpot client + sync, queue + 15-min cron retry,
+  attribution capture, subscriber sync on magic-link, backfill route,
+  UTM-tagged share links, booking CTA on results.
+
+**Remaining (portal clicks + env vars — see `docs/hubspot-runbook.md`):**
+- Private app token + Vercel env vars, run setup + backfill curls.
+- Add `audience_type`/`message` fields to the waitlist form definition;
+  set the real subscription type ID; create the hidden attribution form.
+- Lists, Workflows A/B/C (nurture copy is in the runbook), dashboard.
