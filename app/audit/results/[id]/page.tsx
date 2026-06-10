@@ -10,6 +10,7 @@ import { ScoreCard } from '@/app/audit/components/ScoreCard'
 import { RecommendationBlock } from '@/app/audit/components/RecommendationBlock'
 import { DimensionLegend } from '@/app/audit/components/DimensionLegend'
 import { ShareBar } from '@/app/audit/components/ShareBar'
+import { NarrativeSynthesizer } from '@/app/audit/components/NarrativeSynthesizer'
 
 export const dynamic = 'force-dynamic'
 
@@ -23,8 +24,13 @@ export default async function ResultsPage({ params }: { params: Params }) {
   const narrative = submission.narrative ?? buildStubNarrative(scores)
   const { perDimension, nextFocus } = pickRecs(scores)
 
+  // No stored narrative yet + Claude configured → generate in the background
+  // and refresh; the stub renders meanwhile so the page is never blank.
+  const wantsSynthesis = !submission.narrative && Boolean(process.env.ANTHROPIC_API_KEY)
+
   return (
     <main className="audit-shell audit-shell-results">
+      {wantsSynthesis && <NarrativeSynthesizer id={submission.id} />}
       <div className="audit-container audit-container-wide">
         <div className="audit-step-meta">
           <span>Your audit · {submission.orgName ?? 'Personal report'}</span>

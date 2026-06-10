@@ -74,11 +74,17 @@ failures every 15 minutes (vercel.json cron). `/api/admin/hubspot-setup`
 creates all required contact properties; `/api/admin/hubspot-backfill` queues
 historic submissions.
 
-For future phases:
+For Claude-generated report narratives (Phase 3 — shipped):
 
 ```
-ANTHROPIC_API_KEY=...   # Phase 3: AI narrative synthesis
+ANTHROPIC_API_KEY=...
 ```
+
+When set, the results page generates a personalised three-paragraph narrative
+via Claude (`claude-opus-4-8`) in the background and swaps it in for the
+deterministic stub; without the key the stub renders alone. Synthesis is
+idempotent per submission (`POST /api/audit/[id]/synthesize?force=1` to
+regenerate).
 
 ## API routes
 
@@ -124,5 +130,6 @@ Deployed to Vercel. Connect a Neon Postgres integration so `POSTGRES_URL` is ava
 - **Phase A (shipped)** — Magic-link sign-in + `/account` dashboard.
 - **Phase B (shipped)** — Team workspaces (orgs) with aggregate radar + per-respondent list.
 - **Phase C (shipped)** — Invites: shareable link + branded email invites via Resend.
+- **Phase 3 (shipped)** — Claude-generated narrative synthesis via `/synthesize`, with deterministic fallback.
+- **HubSpot pipeline (shipped)** — CRM sync with retry queue, attribution capture, admin setup/backfill routes. See `docs/hubspot-runbook.md`.
 - **Phase 2** — Facilitator mode (`/deck?facilitator=<sessionId>` overlay) + facilitator console + "email me a copy."
-- **Phase 3** — Real Claude-generated narrative synthesis via the existing `/synthesize` endpoint.

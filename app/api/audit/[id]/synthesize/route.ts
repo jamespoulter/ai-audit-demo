@@ -26,6 +26,13 @@ export async function POST(_req: Request, ctx: { params: { id: string } }) {
     return NextResponse.json({ error: 'not_found' }, { status: 404 })
   }
 
+  // Idempotent: once a narrative exists, return it rather than paying for
+  // regeneration on every results-page visit. ?force=1 regenerates.
+  const force = new URL(_req.url).searchParams.get('force') === '1'
+  if (submission.narrative && !force) {
+    return NextResponse.json({ narrative: submission.narrative })
+  }
+
   const narrative = await synthesizeNarrative({ submission })
 
   try {
